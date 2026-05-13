@@ -1220,71 +1220,11 @@
   class="max-w-4xl mx-auto px-4 pb-12"
 >
 
-  <div class="bg-yellow-500 rounded-2xl shadow-md p-6">
+  <div class="bg-white rounded-2xl shadow-md p-6">
 
-    <h2 class="text-3xl font-bold text-black mb-5">
+    <h2 class="text-3xl font-bold text-[#0056b3] mb-5">
       🛒 Sua Cesta
     </h2>
-
-    <!-- ===================================================== -->
-    <!-- GRUPO DE CUPONS -->
-    <!-- ===================================================== -->
-
-    <div class="bg-blue-50 border border-blue-200 rounded-2xl p-5 mb-6">
-
-      <h3 class="text-xl font-bold text-[#0056b3] mb-2">
-        🎁 Quer fazer parte do nosso grupo de cupons e promoções?
-      </h3>
-
-      <p class="text-gray-600 mb-4">
-        Cadastre seu nome e WhatsApp para receber descontos exclusivos,
-        ofertas relâmpago e promoções especiais da Pitanga Farma.
-      </p>
-
-      <form
-        id="coupon-group-form"
-        class="grid grid-cols-1 md:grid-cols-3 gap-4"
-      >
-
-        <!-- NOME -->
-
-        <input
-          type="text"
-          id="group-name"
-          placeholder="Seu nome"
-          required
-          class="border border-gray-300 rounded-xl p-4 outline-none focus:border-[#0056b3]"
-        >
-
-        <!-- WHATS -->
-
-        <input
-          type="text"
-          id="group-phone"
-          placeholder="Seu WhatsApp"
-          required
-          class="border border-gray-300 rounded-xl p-4 outline-none focus:border-[#0056b3]"
-        >
-
-        <!-- BOTÃO -->
-
-        <button
-          type="submit"
-          class="bg-[#0056b3] hover:bg-blue-700 text-white rounded-xl font-bold p-4 transition"
-        >
-          Entrar no Grupo
-        </button>
-
-      </form>
-
-      <!-- MENSAGEM -->
-
-      <p
-        id="group-message"
-        class="mt-4 font-bold text-green-600"
-      ></p>
-
-    </div>
 
     <!-- ===================================================== -->
     <!-- CUPOM -->
@@ -1395,7 +1335,7 @@
 
     <button
       onclick="finishOrder()"
-      class="w-full bg-black hover:bg-gray-500 text-white py-4 rounded-xl font-bold text-lg transition"
+      class="w-full bg-green-600 hover:bg-green-700 text-white py-4 rounded-xl font-bold text-lg transition"
     >
 
       Finalizar Pedido no WhatsApp
@@ -1403,6 +1343,66 @@
     </button>
 
   </div>
+
+  <!-- ===================================================== -->
+    <!-- GRUPO DE CUPONS -->
+    <!-- ===================================================== -->
+
+    <div class="bg-blue-50 border border-blue-200 rounded-2xl p-5 mb-6">
+
+      <h3 class="text-xl font-bold text-[#0056b3] mb-2">
+        🎁 Quer fazer parte do nosso grupo de cupons e promoções?
+      </h3>
+
+      <p class="text-gray-600 mb-4">
+        Cadastre seu nome e WhatsApp para receber descontos exclusivos,
+        ofertas relâmpago e promoções especiais da Pitanga Farma.
+      </p>
+
+      <form
+        id="coupon-group-form"
+        class="grid grid-cols-1 md:grid-cols-3 gap-4"
+      >
+
+        <!-- NOME -->
+
+        <input
+          type="text"
+          id="group-name"
+          placeholder="Seu nome"
+          required
+          class="border border-gray-300 rounded-xl p-4 outline-none focus:border-[#0056b3]"
+        >
+
+        <!-- WHATS -->
+
+        <input
+          type="text"
+          id="group-phone"
+          placeholder="Seu WhatsApp"
+          required
+          class="border border-gray-300 rounded-xl p-4 outline-none focus:border-[#0056b3]"
+        >
+
+        <!-- BOTÃO -->
+
+        <button
+          type="submit"
+          class="bg-[#0056b3] hover:bg-blue-700 text-white rounded-xl font-bold p-4 transition"
+        >
+          Entrar no Grupo
+        </button>
+
+      </form>
+
+      <!-- MENSAGEM -->
+
+      <p
+        id="group-message"
+        class="mt-4 font-bold text-green-600"
+      ></p>
+
+    </div>
 
 </section>
 
@@ -1568,14 +1568,6 @@ if (diffDays > graceDays) {
 
 
   // =====================================================
-  // CARRINHO
-  // =====================================================
-
-  let cart = [];
-
-  let discount = 0;
-
-  // =====================================================
   // ADICIONAR AO CARRINHO
   // =====================================================
 
@@ -1600,15 +1592,38 @@ if (diffDays > graceDays) {
 
     updateCart();
 
-    // ROLAR PARA CESTA
+    // =====================================================
+    // MENSAGEM VERDE
+    // =====================================================
 
-    document
-      .getElementById("cesta")
-      .scrollIntoView({
-        behavior: "smooth"
-      });
+    const toast =
+      document.getElementById("toast");
+
+    toast.innerHTML =
+      `✅ Item adicionado com sucesso!`;
+
+    // MOSTRAR
+
+    toast.style.opacity = "1";
+
+    toast.style.transform =
+      "translateX(-50%) translateY(0px)";
+
+    // ESCONDER
+
+    setTimeout(() => {
+
+      toast.style.opacity = "0";
+
+      toast.style.transform =
+        "translateX(-50%) translateY(-30px)";
+
+    }, 2200);
+
+  
 
   }
+
 
   // =====================================================
   // ATUALIZAR CARRINHO
